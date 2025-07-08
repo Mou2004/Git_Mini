@@ -26,6 +26,22 @@ class App{
             console.log('Folder has been already initialised')
         }
     }
+    hashObject(content){
+        return cryptop.createHash('sha1').update(content, 'utf-8').digest('hex');
+    }
+
+    //add files to staging area
+    async add(fileToBeAdded){
+        const fileData = await fs.readFile(filetoBeAdded, {encoding: 'utf-8'});
+        const fileHash = this.hashObject(fileData);//hash the file
+        console.log(fileHash);
+
+        const newFileHashedObjectPath = path.join(this.objectsPath, fileHash); //.groot/objects/---
+        await fs.writeFile(newFileHashedObjectPath, fileData);
+
+        console.log(`Added ${fileToBeAdded}`);
+    }
+
 }
 
 const app = new App();
