@@ -36,7 +36,7 @@ class App{
         const fileHash = this.hashObject(fileData);//hash the file
         console.log(fileHash);
 
-        const newFileHashedObjectPath = path.join(this.objectsPath, fileHash); //.groot/objects/---
+        const newFileHashedObjectPath = path.join(this.objectsPath, fileHash); //.app/objects/---
         await fs.writeFile(newFileHashedObjectPath, fileData);
 
         console.log(`Added ${fileToBeAdded}`);
